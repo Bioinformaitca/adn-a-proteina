@@ -1,6 +1,8 @@
 # Del ADN a la proteína: replicación, transcripción y traducción con Biopython
 
-**Asignatura:** Bioinformática · **Autor:** Aimar · **Repositorio:** https://github.com/aimarsantana/adn-a-proteina
+**Asignatura:** Bioinformática · **Autor:** Aimar 
+
+**Repositorio:** <https://github.com/Bioinformaitca/adn-a-proteina>
 
 ## Resumen
 
