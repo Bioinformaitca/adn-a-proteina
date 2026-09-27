@@ -1,0 +1,14 @@
+transcrito	nombre	biotipo	canonico	n_exones	longitud_proteina_aa
+ENST00000358487	FGFR2-206	protein_coding	si	18	821
+ENST00000457416	FGFR2-215	protein_coding	no	19	822
+ENST00000351936	FGFR2-203	protein_coding	no	19	819
+ENST00000346997	FGFR2-202	protein_coding	no	15	819
+ENST00000369061	FGFR2-213	protein_coding	no	14	709
+ENST00000357555	FGFR2-205	protein_coding	no	16	707
+ENST00000356226	FGFR2-204	protein_coding	no	17	704
+ENST00000478859	FGFR2-218	protein_coding	no	17	593
+ENST00000638709	FGFR2-227	protein_coding	no	11	429
+ENST00000429361	FGFR2-214	protein_coding	no	9	371
+ENST00000604236	FGFR2-222	nonsense_mediated_decay	no	16	251
+ENST00000683250	FGFR2-236	nonsense_mediated_decay	no	12	137
+ENST00000684516	FGFR2-241	retained_intron	no	9	-

@@ -1,0 +1,100 @@
+######## src/ej1_replicacion.py
+== Ejercicio 1: replicación ==
+Molde parental 1: 5'-ATG CCG TTA GCT-3'
+Complementaria  : 3'-TAC GGC AAT CGA-5'
+¿Coincide con la del enunciado/manual? True
+Reverse complement (leída 5'->3'): AGC TAA CGG CAT
+
+Molécula hija 1 (parental arriba, NUEVA abajo):
+  5'-ATG CCG TTA GCT-3'
+  3'-TAC GGC AAT CGA-5'  <- nueva
+Molécula hija 2 (NUEVA arriba, parental abajo):
+  5'-ATG CCG TTA GCT-3'  <- nueva
+  3'-TAC GGC AAT CGA-5'
+
+Cada hija conserva una hebra parental -> replicación semiconservativa.
+######## src/ej2_transcripcion.py
+== ej2_hebra_codificante ==
+Hebra codificante: 5'-ATG CCT GAA TGC-3'
+Hebra molde      : 3'-TAC GGA CTT ACG-5'
+ARNm (desde molde): 5'-AUG CCU GAA UGC-3'
+ARNm (Bio.Seq)    : 5'-AUG CCU GAA UGC-3'  coincide=True
+
+Experimento: si tomamos la otra hebra como codificante (reverse complement):
+  ARNm alternativo: 5'-GCA UUC AGG CAU-3'
+  Traducción      : AFRH  (vs correcta: MPEC)
+  ¿Empieza por AUG? False -> producto distinto / sin sentido
+
+######## src/ej3_traduccion.py
+== Ejercicio 3: traducción ==
+Codones: AUG UAU GCU UAA
+Inicio : AUG | Paro: UAA
+Manual : Met-Tyr-Ala  (paro en UAA)
+Bio.Seq: MetTyrAla  -> 1 letra: MYA  coincide=True
+
+Mutación AUG -> GUG en el inicio:
+  Eucariota (busca AUG): ('Met-Leu', 'sin codón de paro: lectura continuaría (read-through)')
+  Si GUG se usa como inicio (bacterias), el iniciador pone fMet igualmente; traducción 'cruda' por Bio.Seq: VYA
+
+Mutación del codón de paro UAA -> CAA (pérdida de stop):
+   ('Met-Tyr-Ala-Gln-Gly-Phe', 'sin codón de paro: lectura continuaría (read-through)')
+######## src/ej4_splicing.py
+== Ejercicio 4: splicing alternativo (gen modelo) ==
+canónica 1-2-3-4-5      147 nt  marco conservado  48 aa  MASKGELFTGVVPILVELDGDVNGHKFSVSGEGEGDATYGKLTLKFIC
+salto E3: 1-2-4-5       107 nt  marco DESPLAZADO  28 aa  MASKGELFTGVVPILCPARARAMPPTAS
+salto E2+E4: 1-3-5       88 nt  marco DESPLAZADO  29 aa  MASKGVELDGDVNGHKFSVRQADPEVHLL
+
+== FGFR2 (Ensembl ENSG00000066468, cromosoma 10, hebra -) ==
+ENST00000358487  FGFR2-206  protein_coding           exones=18  prot= 821 aa  canónico=si
+ENST00000457416  FGFR2-215  protein_coding           exones=19  prot= 822 aa  canónico=no
+ENST00000351936  FGFR2-203  protein_coding           exones=19  prot= 819 aa  canónico=no
+ENST00000346997  FGFR2-202  protein_coding           exones=15  prot= 819 aa  canónico=no
+ENST00000369061  FGFR2-213  protein_coding           exones=14  prot= 709 aa  canónico=no
+ENST00000357555  FGFR2-205  protein_coding           exones=16  prot= 707 aa  canónico=no
+ENST00000356226  FGFR2-204  protein_coding           exones=17  prot= 704 aa  canónico=no
+ENST00000478859  FGFR2-218  protein_coding           exones=17  prot= 593 aa  canónico=no
+ENST00000638709  FGFR2-227  protein_coding           exones=11  prot= 429 aa  canónico=no
+ENST00000429361  FGFR2-214  protein_coding           exones= 9  prot= 371 aa  canónico=no
+ENST00000604236  FGFR2-222  nonsense_mediated_decay  exones=16  prot= 251 aa  canónico=no
+ENST00000683250  FGFR2-236  nonsense_mediated_decay  exones=12  prot= 137 aa  canónico=no
+ENST00000684516  FGFR2-241  retained_intron          exones= 9  prot=   - aa  canónico=no
+
+Isoformas codificantes mostradas: 10 | proteína de 371 a 822 aa
+######## src/ej5_proteinas.py
+== Ejercicio 5: péptido ==
+H2N-(N-terminal) Met-Ile-Ser-Gly-Val-Lys-His (C-terminal)-COOH
+  Met: KD=+1.9  apolar/hidrofóbico
+  Ile: KD=+4.5  apolar/hidrofóbico
+  Ser: KD=-0.8  polar sin carga
+  Gly: KD=-0.4  apolar (cadena lateral = H)
+  Val: KD=+4.2  apolar/hidrofóbico
+  Lys: KD=-3.9  básico, carga +
+  His: KD=-3.2  básico (carga + parcial)
+GRAVY=0.33  pI=8.52  MW=770.9 Da
+
+== Ubiquitina 1UBQ (H=hélice alfa, E=lámina beta) ==
+  1 MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQ
+    EEEEEEE--EEEEEEEE-----HHHHHHHHHHHH-----E
+ 41 QRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG
+    EEEEE--EEE-----HHHH----EEEEEEEEE----
+Hélice: 16 res (21%) | Lámina: 33 res (43%)
+
+Mutación puntual V26K (residuo en 'H'): hidropatía +4.2 -> -3.9
+GRAVY proteína: -0.489 -> -0.596
+Una carga (+) enterrada en el núcleo desestabiliza el plegamiento aunque el cambio global sea pequeño.
+######## src/ej6_pipeline.py
+INFO | === Registro NM_000518.5_cds_NP_000509.1 ===
+INFO | Validación OK: 444 nt, GC=56.1%
+INFO | [1/3 REPLICACIÓN] Helicasa abre la doble hélice (444 pb)
+INFO |   Hebra parental 2 (antisentido, 5'->3'): TTAGTGATACTTGTGGGCCAGGGCATTAGC...
+INFO |   ADN polimerasa sintetiza 5'->3' la hebra nueva sobre la parental 1: TTAGTGATACTTGTGGGCCAGGGCATTAGC...
+INFO |   ADN polimerasa sintetiza 5'->3' la hebra nueva sobre la parental 2: ATGGTGCATCTGACTCCTGAGGAGAAGTCT...
+INFO |   Ligasa une fragmentos de Okazaki. 2 moléculas hijas idénticas (semiconservativa) ✔
+INFO | [2/3 TRANSCRIPCIÓN] Cadena molde = hebra antisentido
+INFO |   ARNm (444 nt): AUGGUGCAUCUGACUCCUGAGGAGAAGUCU...
+INFO |   Comprobación: ARNm == codificante con T->U ✔
+INFO | [3/3 TRADUCCIÓN] Buscando codón de inicio AUG
+INFO |   Inicio en posición 1; 148 codones leídos; codón de paro: UAA
+INFO |   Proteína (147 aa): MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH
+INFO | Resultados guardados en /home/claude/adn-a-proteina/resultados/NM_000518.5_cds_NP_000509.1_resultados.fasta
+INFO | Resultados guardados en /home/claude/adn-a-proteina/resultados/NM_000518.5_cds_NP_000509.1_resultados.fasta
